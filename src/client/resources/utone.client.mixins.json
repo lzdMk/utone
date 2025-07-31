@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.utone.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"UtoneClientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
