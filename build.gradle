@@ -12,10 +12,20 @@ base {
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	// Meteor Maven repositories for Baritone fork
+	maven {
+		name = "meteor-maven-releases"
+		url = uri("https://maven.meteordev.org/releases")
+	}
+	maven {
+		name = "meteor-maven-snapshots"
+		url = uri("https://maven.meteordev.org/snapshots")
+	}
+	maven {
+		name = "spongepowered"
+		url = uri("https://repo.spongepowered.org/repository/maven-public/")
+	}
 }
 
 loom {
@@ -25,9 +35,14 @@ loom {
 		"utone" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
+			
 		}
 	}
 
+	// Ensure a stable refmap name for mixin annotation processing (helps IDEs)
+	mixin {
+		defaultRefmapName = 'utone.refmap.json'
+	}
 }
 
 dependencies {
@@ -38,7 +53,12 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
+	// Meteor Development Baritone fork
+	modCompileOnly("meteordevelopment:baritone:${baritone_version}-SNAPSHOT")
+
+	// Enable mixin annotation processing for IDEs (VS Code/Red Hat Java)
+	annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
 
 processResources {

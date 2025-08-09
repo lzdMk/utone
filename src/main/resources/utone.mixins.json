@@ -2,6 +2,7 @@
 	"required": true,
 	"package": "com.utone.mixin",
 	"compatibilityLevel": "JAVA_21",
+	"refmap": "utone.refmap.json",
 	"mixins": [
 		"UtoneMixin"
 	],

@@ -8,7 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
 public class UtoneMixin {
-	@Inject(at = @At("HEAD"), method = "loadWorld")
+	// In modern versions (1.20+), the server initializes worlds via createWorlds
+	@Inject(at = @At("HEAD"), method = "createWorlds")
 	private void init(CallbackInfo info) {
 		// This code is injected into the start of MinecraftServer.loadWorld()V
 	}
